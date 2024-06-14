@@ -1,0 +1,33 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bjs3nkccpjpa6"]
+
+[ext_resource type="Texture2D" uid="uid://bljko23y0mfpx" path="res://Assets/World Assets/Background.png" id="1_ujhvj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_826oi"]
+texture = ExtResource("1_ujhvj")
+7:0/size_in_atlas = Vector2i(6, 16)
+7:0/0 = 0
+7:0/0/z_index = 2
+14:0/size_in_atlas = Vector2i(8, 16)
+14:0/0 = 0
+14:0/0/z_index = 2
+22:0/size_in_atlas = Vector2i(6, 16)
+22:0/0 = 0
+22:0/0/z_index = 1
+29:0/size_in_atlas = Vector2i(6, 16)
+29:0/0 = 0
+29:0/0/z_index = 1
+36:0/size_in_atlas = Vector2i(8, 16)
+36:0/0 = 0
+36:0/0/z_index = 1
+44:0/size_in_atlas = Vector2i(6, 16)
+44:0/0 = 0
+44:0/0/z_index = 2
+50:0/size_in_atlas = Vector2i(6, 16)
+50:0/0 = 0
+50:0/0/z_index = 1
+0:0/size_in_atlas = Vector2i(6, 16)
+0:0/0 = 0
+0:0/0/z_index = 2
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_826oi")
