@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv766jvt5gtfc"]
+
+[ext_resource type="Script" path="res://Player/player_slash_skill.gd" id="1_lhysj"]
+[ext_resource type="Texture2D" uid="uid://bpxsse7o5es43" path="res://Assets/Effects/BulletImpact.png" id="1_nlk2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4tpx"]
+atlas = ExtResource("1_nlk2r")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6jvc"]
+atlas = ExtResource("1_nlk2r")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no54k"]
+atlas = ExtResource("1_nlk2r")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43ab6"]
+atlas = ExtResource("1_nlk2r")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eq4ot"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4tpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6jvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no54k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43ab6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bifof"]
+radius = 11.0
+height = 34.0
+
+[node name="PlayerSlashSkill" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 0
+script = ExtResource("1_lhysj")
+SPEED = 200
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eq4ot")
+frame = 3
+frame_progress = 1.0
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_bifof")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_bifof")
+debug_color = Color(0.823445, 0, 0.261057, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

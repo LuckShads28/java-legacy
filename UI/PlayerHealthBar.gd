@@ -29,8 +29,8 @@ func _set_health(new_health):
 		first_init = true
 		init_health(new_health)
 	
-	if health <= 0:
-		queue_free()
+	#if health <= 0:
+		#queue_free()
 	
 	if health < prev_health:
 		timer.start()

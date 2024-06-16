@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbks40enr1gl8"]
+
+[ext_resource type="Texture2D" uid="uid://d0i02av3gom6i" path="res://Assets/Items/Materials.png" id="1_ggsog"]
+[ext_resource type="Script" path="res://Worlds/Items/scroll.gd" id="1_kv7l6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdgnq"]
+size = Vector2(16, 14)
+
+[node name="Scroll" type="Node2D"]
+z_index = 6
+script = ExtResource("1_kv7l6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ggsog")
+hframes = 7
+vframes = 3
+frame = 7
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hdgnq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

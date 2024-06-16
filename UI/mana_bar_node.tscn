@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn637xrtwf5tq"]
+[gd_scene load_steps=6 format=3 uid="uid://dn637xrtwf5tq"]
+
+[ext_resource type="Script" path="res://UI/ManaBar.gd" id="1_yw5hw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2p8hh"]
 
@@ -23,7 +25,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 39.9999
 
-[node name="ManaBar" type="ProgressBar" parent="."]
+[node name="ManaBar" type="ProgressBar" parent="." node_paths=PackedStringArray("mana_consume")]
 z_index = 1
 layout_mode = 0
 offset_right = 240.0
@@ -32,6 +34,8 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_2p8hh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1jtmx")
 value = 60.0
 show_percentage = false
+script = ExtResource("1_yw5hw")
+mana_consume = NodePath("ManaConsumeBar")
 
 [node name="ManaConsumeBar" type="ProgressBar" parent="ManaBar"]
 z_index = -1

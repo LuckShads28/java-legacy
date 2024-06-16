@@ -17,18 +17,23 @@ signal on_hit(node : Node, damage_taken : int)
 		health = value
 		if get_parent().name == "Player":
 			stats.setHealth(health)
-			#stats.healthChanged.emit()
 		
 @export var dead_animation_name : String = "dead"
 
 func _ready():
 	if health_bar:
 		health_bar.init_health(health)
+	if get_parent().name == "Player":
+		stats.setMaxHealth(health)
+		stats.connect("healed", heal)
+
+func heal(value):
+	health = value
 
 func hit(damage: int, knockback_direction: Vector2):
 	health -= damage
 	
-	if health_bar:
+	if health_bar && is_instance_valid(health_bar):
 		health_bar.health = health
 		
 	emit_signal("on_hit", get_parent(), damage, knockback_direction)

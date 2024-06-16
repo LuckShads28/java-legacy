@@ -14,10 +14,20 @@ signal manaChanged(value)
 signal maxManaChanged(value)
 signal goldChanged(value)
 signal initHealth(value)
+signal healed(value)
+signal useManaPot(value)
 
 func init_health(value):
 	self.health = value
 	self.maxHealth = value
+
+func heal(value):
+	if value > maxHealth:
+		health = maxHealth
+	else:
+		health = value
+	emit_signal("healthChanged", health)
+	emit_signal("healed", health)
 
 func setMaxHealth(value):
 	maxHealth = value
@@ -40,6 +50,14 @@ func setMana(value):
 	emit_signal("manaChanged", mana)
 	if mana == 0:
 		emit_signal("noMana")
+		
+func addMana(value):
+	if value > maxMana:
+		mana = maxMana
+	else:
+		mana = value
+	emit_signal("manaChanged", mana)
+	emit_signal("useManaPot", mana)
 		
 func setGold(value):
 	gold = value

@@ -12,6 +12,7 @@ var direction = Vector2.ZERO
 @onready var animation_tree = $AnimationTree
 @onready var sprite = $Sprite2D
 @onready var state_machine = $CharacterStateMachine
+@onready var skill_marker = $SkillMarker
 
 signal facing_direction_changed(facing_right: bool)
 
@@ -31,7 +32,8 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	floor_snap_length = 5
 	move_and_slide()
 	update_animation_parameters()
 	update_facing_direction()
@@ -42,7 +44,11 @@ func update_animation_parameters():
 func update_facing_direction():
 	if direction.x > 0:
 		sprite.flip_h = false;
+		skill_marker.position = skill_marker.right_position
+		skill_marker.rotation_degrees = 0
 	elif direction.x < 0:
 		sprite.flip_h = true;
+		skill_marker.position = skill_marker.left_position
+		skill_marker.rotation_degrees = 180
 		
 	emit_signal("facing_direction_changed", !sprite.flip_h)

@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/HitState.gd" id="7_dfugx"]
 [ext_resource type="Script" path="res://Enemies/WalkState.gd" id="7_e340n"]
 [ext_resource type="Script" path="res://Enemies/AttackState.gd" id="8_ury36"]
-[ext_resource type="PackedScene" path="res://UI/health_bar.tscn" id="9_yatog"]
+[ext_resource type="PackedScene" uid="uid://cmkw32g5ui4kf" path="res://UI/health_bar.tscn" id="9_yatog"]
 [ext_resource type="Script" path="res://Scripts/DebugLabel.gd" id="10_fnrmx"]
 [ext_resource type="Script" path="res://Scripts/PunchHitbox.gd" id="11_ouqn2"]
 [ext_resource type="Script" path="res://Scripts/FacingCollision.gd" id="12_bcpuw"]
@@ -209,11 +209,14 @@ size = Vector2(9, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jekc1"]
 size = Vector2(14, 18.25)
 
-[node name="Ular" type="CharacterBody2D" node_paths=PackedStringArray("hit_state")]
+[node name="Ular" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "ray_cast_right", "ray_cast_left")]
 z_index = 6
+scale = Vector2(1.2, 1.2)
 collision_layer = 4
 script = ExtResource("1_gagtl")
 hit_state = NodePath("CharacterStateMachine/Hit")
+ray_cast_right = NodePath("Raycast/RaycastRight")
+ray_cast_left = NodePath("Raycast/RayCastLeft")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -221,6 +224,7 @@ texture = ExtResource("2_y0pee")
 flip_h = true
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
 shape = SubResource("CapsuleShape2D_n061p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -267,22 +271,25 @@ script = ExtResource("7_dfugx")
 damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 return_state = NodePath("../Walk")
-can_move = null
+can_move = false
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
 wait_time = 0.3
 one_shot = true
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+scale = Vector2(1.2, 1.2)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2(-9.5, 1)
+scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_h8egq")
 debug_color = Color(0.975309, 0, 0.420357, 0.42)
 
 [node name="BiteHitbox" type="Area2D" parent="." node_paths=PackedStringArray("facing_shape", "enemy")]
+scale = Vector2(1.2, 1.2)
 collision_layer = 0
 collision_mask = 2
 monitoring = false
@@ -292,15 +299,19 @@ facing_shape = NodePath("CollisionShape2D")
 enemy = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BiteHitbox"]
-position = Vector2(-7, 0.875)
+position = Vector2(-7, 0.9)
+scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_jekc1")
 script = ExtResource("12_bcpuw")
+facing_right_position = Vector2(7, 0.9)
+facing_left_position = Vector2(-7, 0.9)
 
 [node name="HealthBar" parent="." instance=ExtResource("9_yatog")]
 offset_left = -9.0
 offset_top = -12.0
 offset_right = 9.0
 offset_bottom = -10.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 visible = false
@@ -312,6 +323,16 @@ offset_bottom = -16.0
 text = "State: "
 script = ExtResource("10_fnrmx")
 state_machine = NodePath("../CharacterStateMachine")
+
+[node name="Raycast" type="Node2D" parent="."]
+
+[node name="RaycastRight" type="RayCast2D" parent="Raycast"]
+scale = Vector2(1.2, 1.2)
+target_position = Vector2(12.5, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="Raycast"]
+scale = Vector2(1.2, 1.2)
+target_position = Vector2(-13.1944, 0)
 
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/Attack/Timer" to="CharacterStateMachine/Attack" method="_on_timer_timeout"]

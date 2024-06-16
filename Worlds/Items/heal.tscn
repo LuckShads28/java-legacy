@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtpjbbufh34ga"]
+
+[ext_resource type="Script" path="res://Worlds/Items/heal.gd" id="1_p82js"]
+[ext_resource type="Texture2D" uid="uid://djpij5xb5sbay" path="res://Assets/Items/heal.png" id="2_tg43f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43ta1"]
+size = Vector2(16, 13)
+
+[node name="heal" type="Node2D"]
+z_index = 6
+script = ExtResource("1_p82js")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.55556, 1.55556)
+texture = ExtResource("2_tg43f")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_43ta1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

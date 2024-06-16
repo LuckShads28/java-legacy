@@ -11,4 +11,5 @@ func _ready():
 func _process(delta):
 	text = "State: " + state_machine.current_state.name
 	if hp:
-		text = "HP: " + str(hp.health)
+		text = "Mana: " + str(PlayerStats.mana)
+		#text
