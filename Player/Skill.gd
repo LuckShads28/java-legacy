@@ -29,6 +29,7 @@ func manaChange(value):
 func state_input(event: InputEvent):
 	if event.is_action_pressed("skill") && timer.is_stopped():
 		timer.start()
+		
 
 func shoot_skill():
 	var instance = slash_skill.instantiate()
@@ -40,10 +41,13 @@ func shoot_skill():
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == skill_animation_name:
 		if mana > 0:
-			#print("Player used skill")
-			shoot_skill()
 			mana -= skillManaConsume
+			shoot_skill()
 		else:
 			pass
 		playback.travel(return_animation_node)
 		next_state = return_state
+
+
+func _on_animation_tree_animation_started(anim_name):
+	pass

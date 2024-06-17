@@ -8,12 +8,15 @@ var spawn_position : Vector2
 var spawn_rotation : float
 
 @onready var animation = $AnimatedSprite2D
+@onready var audio = $AudioStreamPlayer2D
 
 func _ready():
 	global_position = spawn_position
 	global_rotation = spawn_rotation
-	animation.play("default")
 	
+	animation.play("default")
+	audio.playing = true
+		
 func _physics_process(delta):
 	velocity = Vector2(SPEED, 0).rotated(dir)
 	move_and_slide()

@@ -13,6 +13,7 @@ var direction = Vector2.ZERO
 @onready var sprite = $Sprite2D
 @onready var state_machine = $CharacterStateMachine
 @onready var skill_marker = $SkillMarker
+@onready var walk_sfx = $SFX/WalkSFX
 
 signal facing_direction_changed(facing_right: bool)
 

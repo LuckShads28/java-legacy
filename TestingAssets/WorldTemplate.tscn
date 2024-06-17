@@ -1,0 +1,171 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1ept0sag4ke8"]
+
+[ext_resource type="PackedScene" uid="uid://c0d0l0h6mpsff" path="res://Worlds/main_tilemap.tscn" id="1_leiu6"]
+[ext_resource type="TileSet" uid="uid://d0oyi8u8303q5" path="res://Worlds/main_tilemap.tres" id="2_0fosi"]
+[ext_resource type="Texture2D" uid="uid://crgyuolo3dkn6" path="res://Assets/World Assets/Props-sheet1.png" id="3_dnnq1"]
+[ext_resource type="Texture2D" uid="uid://bh41ud58q71qh" path="res://Assets/World Assets/Props-sheet2.png" id="4_t2xdv"]
+[ext_resource type="Texture2D" uid="uid://bsvew6a7eqo46" path="res://Assets/World Assets/Props-Rocks.png" id="5_frrlj"]
+[ext_resource type="PackedScene" uid="uid://34mfob7shhmm" path="res://UI/player_ui.tscn" id="6_sc1en"]
+[ext_resource type="Texture2D" uid="uid://ckhewv07x0yf3" path="res://Assets/BG/Background.png" id="7_ymffw"]
+[ext_resource type="PackedScene" uid="uid://b5flxphyxexix" path="res://Player/MainChar.tscn" id="8_0owmt"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhjx6"]
+texture = ExtResource("3_dnnq1")
+22:4/size_in_atlas = Vector2i(11, 10)
+22:4/0 = 0
+22:4/0/texture_origin = Vector2i(0, 8)
+7:1/size_in_atlas = Vector2i(14, 14)
+7:1/0 = 0
+4:12/size_in_atlas = Vector2i(3, 2)
+4:12/0 = 0
+1:12/size_in_atlas = Vector2i(3, 2)
+1:12/0 = 0
+0:7/size_in_atlas = Vector2i(4, 2)
+0:7/0 = 0
+4:6/size_in_atlas = Vector2i(2, 3)
+4:6/0 = 0
+3:2/size_in_atlas = Vector2i(3, 3)
+3:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wd4bf"]
+texture = ExtResource("4_t2xdv")
+1:1/size_in_atlas = Vector2i(11, 12)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -8)
+56:10/size_in_atlas = Vector2i(6, 3)
+56:10/0 = 0
+63:7/size_in_atlas = Vector2i(5, 7)
+63:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hmsp"]
+texture = ExtResource("5_frrlj")
+0:0/size_in_atlas = Vector2i(4, 5)
+0:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+4:2/size_in_atlas = Vector2i(4, 3)
+4:2/0 = 0
+8:0/size_in_atlas = Vector2i(1, 2)
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:0/0 = 0
+11:1/size_in_atlas = Vector2i(1, 2)
+11:1/0 = 0
+12:1/size_in_atlas = Vector2i(2, 2)
+12:1/0 = 0
+14:0/size_in_atlas = Vector2i(3, 3)
+14:0/0 = 0
+13:3/size_in_atlas = Vector2i(4, 2)
+13:3/0 = 0
+11:3/size_in_atlas = Vector2i(2, 2)
+11:3/0 = 0
+8:2/size_in_atlas = Vector2i(3, 3)
+8:2/0 = 0
+14:5/size_in_atlas = Vector2i(3, 3)
+14:5/0 = 0
+12:6/size_in_atlas = Vector2i(2, 2)
+12:6/0 = 0
+11:6/size_in_atlas = Vector2i(1, 2)
+11:6/0 = 0
+11:5/0 = 0
+10:5/0 = 0
+9:5/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+8:5/size_in_atlas = Vector2i(1, 2)
+8:5/0 = 0
+6:5/size_in_atlas = Vector2i(2, 2)
+6:5/0 = 0
+4:5/size_in_atlas = Vector2i(2, 2)
+4:5/0 = 0
+4:7/size_in_atlas = Vector2i(4, 3)
+4:7/0 = 0
+8:7/size_in_atlas = Vector2i(3, 3)
+8:7/0 = 0
+11:8/size_in_atlas = Vector2i(2, 2)
+11:8/0 = 0
+13:8/size_in_atlas = Vector2i(4, 2)
+13:8/0 = 0
+13:8/0/texture_origin = Vector2i(0, -8)
+15:10/size_in_atlas = Vector2i(3, 2)
+15:10/0 = 0
+15:12/size_in_atlas = Vector2i(3, 2)
+15:12/0 = 0
+13:10/size_in_atlas = Vector2i(2, 2)
+13:10/0 = 0
+13:12/size_in_atlas = Vector2i(2, 1)
+13:12/0 = 0
+10:13/size_in_atlas = Vector2i(4, 3)
+10:13/0 = 0
+10:10/size_in_atlas = Vector2i(3, 3)
+10:10/0 = 0
+7:10/size_in_atlas = Vector2i(3, 2)
+7:10/0 = 0
+7:12/size_in_atlas = Vector2i(3, 4)
+7:12/0 = 0
+4:11/size_in_atlas = Vector2i(3, 5)
+4:11/0 = 0
+0:10/size_in_atlas = Vector2i(4, 6)
+0:10/0 = 0
+0:5/size_in_atlas = Vector2i(4, 5)
+0:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jbsdn"]
+sources/2 = SubResource("TileSetAtlasSource_hhjx6")
+sources/3 = SubResource("TileSetAtlasSource_wd4bf")
+sources/4 = SubResource("TileSetAtlasSource_6hmsp")
+
+[node name="WorldTemplate" type="Node2D"]
+
+[node name="MainTilemap" parent="." instance=ExtResource("1_leiu6")]
+z_index = 2
+tile_set = ExtResource("2_0fosi")
+layer_0/name = "Platform Layer"
+layer_0/z_index = -1
+layer_0/tile_data = PackedInt32Array()
+layer_1/name = "Decoration Layer"
+layer_1/tile_data = PackedInt32Array()
+
+[node name="Props" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_jbsdn")
+format = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(96, 744)
+zoom = Vector2(3, 3)
+limit_left = 10
+limit_top = 0
+limit_right = 6720
+limit_bottom = 1080
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="UI" instance=ExtResource("6_sc1en")]
+offset_left = 78.0
+offset_top = 71.0
+offset_right = 78.0
+offset_bottom = 71.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BG"]
+scale = Vector2(1.32721, 1.32721)
+texture = ExtResource("7_ymffw")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("8_0owmt")]
+position = Vector2(96, 744)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")

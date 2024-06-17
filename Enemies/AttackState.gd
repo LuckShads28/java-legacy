@@ -18,5 +18,5 @@ func attack():
 	playback.travel(attack_animation)
 
 func _on_timer_timeout():
-	playback.travel(return_animation_node)
 	next_state = return_state
+	playback.travel(return_animation_node)

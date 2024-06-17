@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv766jvt5gtfc"]
+[gd_scene load_steps=10 format=3 uid="uid://bv766jvt5gtfc"]
 
 [ext_resource type="Script" path="res://Player/player_slash_skill.gd" id="1_lhysj"]
 [ext_resource type="Texture2D" uid="uid://bpxsse7o5es43" path="res://Assets/Effects/BulletImpact.png" id="1_nlk2r"]
+[ext_resource type="AudioStream" uid="uid://cukkibvkgescn" path="res://Sounds/SFX/04_Fire_explosion_04_medium.wav" id="3_ihb2w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4tpx"]
 atlas = ExtResource("1_nlk2r")
@@ -46,6 +47,7 @@ height = 34.0
 [node name="PlayerSlashSkill" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_lhysj")
 SPEED = 200
 
@@ -69,5 +71,8 @@ position = Vector2(0, -1)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_bifof")
 debug_color = Color(0.823445, 0, 0.261057, 0.42)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ihb2w")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

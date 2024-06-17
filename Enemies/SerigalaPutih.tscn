@@ -350,7 +350,7 @@ states/hit/position = Vector2(385, 13)
 states/walk/node = SubResource("AnimationNodeAnimation_ba1xe")
 states/walk/position = Vector2(377, 93)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_pqc2l"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_55kuu"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_1gltt"), "walk", "dead", SubResource("AnimationNodeStateMachineTransition_yxj6f")]
-graph_offset = Vector2(-13, -21)
+graph_offset = Vector2(-33, -48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wck5i"]
 size = Vector2(9, 18)
@@ -408,7 +408,7 @@ can_move = false
 script = ExtResource("11_0s7ij")
 return_state = NodePath("../Walk")
 playerDetector = NodePath("../../PlayerDetector")
-return_animation_node = "run"
+return_animation_node = "walk"
 can_move = false
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Attack"]
@@ -421,7 +421,6 @@ damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 knockback_speed = 75
 return_state = NodePath("../Walk")
-return_animation_node = "run"
 can_move = false
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
@@ -467,14 +466,17 @@ facing_left_position = Vector2(-9, 1.6)
 [node name="Raycast" type="Node2D" parent="."]
 
 [node name="RaycastRight" type="RayCast2D" parent="Raycast"]
+position = Vector2(0, 4)
 scale = Vector2(1.2, 1.2)
 target_position = Vector2(24.82, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="Raycast"]
+position = Vector2(0, 4)
 scale = Vector2(1.2, 1.2)
 target_position = Vector2(-24.514, 0)
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 texture_filter = 1
 offset_left = -25.0
 offset_top = -37.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://b5flxphyxexix"]
+[gd_scene load_steps=67 format=3 uid="uid://b5flxphyxexix"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_mn8r4"]
 [ext_resource type="Texture2D" uid="uid://g8iva8r4arqw" path="res://Assets/Player Assets/Jumlp-All/Jump-All-Sheet.png" id="2_2pcnx"]
@@ -20,6 +20,9 @@
 [ext_resource type="Script" path="res://Scripts/FacingCollision.gd" id="10_n2wur"]
 [ext_resource type="Script" path="res://Player/Skill.gd" id="14_424tr"]
 [ext_resource type="Script" path="res://Player/SkillMarker.gd" id="17_pu3ea"]
+[ext_resource type="AudioStream" uid="uid://b75ag6j34euwh" path="res://Sounds/SFX/56_Attack_03.wav" id="21_m6euc"]
+[ext_resource type="AudioStream" uid="uid://c54xspllj2a11" path="res://Sounds/SFX/03_Step_grass_03.wav" id="22_f56qy"]
+[ext_resource type="AudioStream" uid="uid://g8062r3aws3x" path="res://Sounds/SFX/30_Jump_03.wav" id="23_utoee"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6dt5a"]
 radius = 9.0
@@ -74,6 +77,18 @@ tracks/3/path = NodePath("Sprite2D:material:shader_parameter/active")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFX/JumpSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -143,6 +158,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SFX/AttackSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1p671"]
 resource_name = "attack2"
@@ -206,6 +233,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SFX/AttackSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_0s438"]
@@ -310,6 +349,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFX/JumpSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ku7o2"]
@@ -483,6 +534,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFX/JumpSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_s5me6"]
@@ -719,8 +782,8 @@ shape = SubResource("CapsuleShape2D_6dt5a")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_7vr56")
-texture = ExtResource("2_tokqd")
-hframes = 4
+texture = ExtResource("4_187bl")
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -735,6 +798,7 @@ parameters/move/blend_position = 0.0338836
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("3_ja7y0")
+health = null
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
 script = ExtResource("3_2qkqg")
@@ -849,8 +913,20 @@ text = "State: "
 script = ExtResource("7_tsj0h")
 state_machine = NodePath("../../CharacterStateMachine")
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="AttackSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("21_m6euc")
+
+[node name="WalkSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("22_f56qy")
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("23_utoee")
+
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Landing" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Skill" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="CharacterStateMachine/Skill" method="_on_animation_tree_animation_started"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PunchHitbox" to="PunchHitbox" method="_on_body_entered"]
